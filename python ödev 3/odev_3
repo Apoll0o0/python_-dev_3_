@@ -1,0 +1,48 @@
+class Personel:
+    def __init__(self, adı, departmanı, çalışma_yılı, maaşı):
+        self.adı = adı
+        self.departmanı = departmanı
+        self.çalışma_yılı = çalışma_yılı
+        self.maaşı = maaşı
+
+class Firma:
+    def __init__(self):
+        self.personel_listesi = []
+
+    def personel_ekle(self, personel):
+        self.personel_listesi.append(personel)
+
+    def personel_listele(self):
+        for personel in self.personel_listesi:
+            print("Adı:", personel.adı)
+            print("Departmanı:", personel.departmanı)
+            print("Çalışma Yılı:", personel.çalışma_yılı)
+            print("Maaşı:", personel.maaşı)
+            print("-------------------")
+
+    def maaş_zammı(self, personel, zam_oranı):
+        personel.maaşı *= (1 + zam_oranı / 100)
+
+    def personel_çıkart(self, personel):
+        self.personel_listesi.remove(personel)
+        
+personel1 = Personel("Alperen", "Muhasebe", 5, 5000)
+personel2 = Personel("Kadir", "İnsan Kaynakları", 3, 4500)
+
+firma = Firma()
+
+firma.personel_ekle(personel1)
+firma.personel_ekle(personel2)
+
+print("Firmanın Personel Listesi:")
+firma.personel_listele()
+
+firma.maaş_zammı(personel1, 10)
+
+print("\nZam Sonrası Personel Listesi:")
+firma.personel_listele()
+
+firma.personel_çıkart(personel2)
+
+print("\nPersonel Çıkarıldıktan Sonraki Liste:")
+firma.personel_listele()
